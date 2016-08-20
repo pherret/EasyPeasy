@@ -21,7 +21,7 @@ whether **EasyPeasy** is for you or not.
 ### A touch of EasyPeasy
 The example below is quite simple but shows how effortless its implementation
 result using **EasyPeasy**.
-![touch](README/first_touch.png)
+![touch](README/first_touch.png?001)
 
 ### Features
 
@@ -158,7 +158,7 @@ As well as the **DimensionAttributes** have the `like:` method to establish
 *Auto Layout* relationships, you can use a similar method to do the same with
 **PositionAttributes**. This method is:
 ```swift
-func to(view: UIView, _ attribute: ReferenceAttribute? = nil) -> Self
+func to(_ view: UIView, _ attribute: ReferenceAttribute? = nil) -> Self
 ```
 
 The example below positions `contentLabel` 10px under `headerView` with the same
@@ -166,7 +166,7 @@ left margin as `headerView`.
 ```swift
 contentLabel <- [
 	Top(10).to(headerView),
-	Left().to(headerView, .Left)
+	Left().to(headerView, .left)
 ]
 ```
 
@@ -224,7 +224,7 @@ view <- Margins(10)
 view <- Margins(UIEdgeInsets(top: 5, left: 10, bottom: 5, right: 10))
 ```
 
-* `CenterWithinMargins`: It creates `CenterXWithinMargins` and `CenterYWithinMargins`
+* `centerWithinMargins(`: It creates `centerXWithinMargins` and `centerYWithinMargins`
 attributes. Examples:
 ```swift
 // Apply centerXWithinMargins = 0 and centerYWithinMargins = 0 constraints to its superview
@@ -239,21 +239,21 @@ view <- CenterWithinMargins(CGPoint(x: 0, y: 50))
 
 The `Priority` enum does the same function as `UILayoutPriority` and it's shaped
 by four cases:
-* `LowPriority`: it creates an *Auto Layout* priority with `Float` value `1`.
+* `lowPriority`: it creates an *Auto Layout* priority with `Float` value `1`.
 
-* `MediumPriority`: it creates an *Auto Layout* priority with `Float` value `500`.
+* `mediumPriority`: it creates an *Auto Layout* priority with `Float` value `500`.
 
-* `HighPriority`: it creates an *Auto Layout* priority with `Float` value `1000`.
+* `highPriority`: it creates an *Auto Layout* priority with `Float` value `1000`.
 
-* `CustomPriority`: it specifies the *Auto Layout* priority defined by the
-developer in the case associated value `value`. Example: `.CustomPriority(value: 750.0)`
+* `customPriority`: it specifies the *Auto Layout* priority defined by the
+developer in the case associated value `value`. Example: `.customPriority(value: 750.0)`
 
 In order to apply any of these priorities to an `Attribute`, the method
 `.with(priority: Priority)` must be used. The following example gives an
 `UILayoutPriority` of `500` to the `Top` `Attribute` applied to `view`:
 
 ```swift
-view <- Top(>=50).with(.MediumPriority)
+view <- Top(>=50).with(.mediumPriority)
 ```
 
 You can also apply a `Priority` to an array of `Attributes` (this operation will
@@ -263,7 +263,7 @@ override the priorities previously applied to an `Attribute`).
 view <- [
 	Width(200),
 	Height(200)
-].with(.MediumPriority)
+].with(.mediumPriority)
 ```
 
 ### Conditions
@@ -291,8 +291,8 @@ someView <- [
 	Top(10),
 	Bottom(10),
 	Width(250),
-	Left(10).when { HorizontalSizeClass(someView) == .Compact },
-	CenterX(0).when { HorizontalSizeClass(someView) == .Regular }
+	Left(10).when { HorizontalSizeClass(someView) == .compact },
+	CenterX(0).when { HorizontalSizeClass(someView) == .regular }
 ]
 ```
 
